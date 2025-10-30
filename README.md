@@ -1,6 +1,6 @@
 # Album Score Ranker
 
-A simple Flask API that simulates ranking albums based on user ratings.
+A simple Flask API that ranks albums based on user ratings.
 
 **Tech Stack:** Python, Flask, SQLite 
 
