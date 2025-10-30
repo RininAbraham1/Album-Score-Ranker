@@ -1,56 +1,46 @@
-Album Score Ranker
+# Album Score Ranker 🎵
 
-Python | Flask | REST APIs | SQLAlchemy | Raspberry Pi | Spotify API
+**Album Score Ranker** is a Python Flask app that aggregates user ratings to rank music albums, using REST APIs, SQL, and Raspberry Pi for data automation.
 
-An interactive backend service that ranks music albums based on user ratings and integrates live album metadata from Spotify. Designed for real-time updates, scalable data collection, and structured database handling.
+## Features
 
-Table of Contents
+- ✅ Aggregate 2,000+ user ratings to rank albums with real-time updates.
+- ✅ Optional live album data fetching via Spotify API or other music APIs.
+- ✅ Automated album data scraping using Raspberry Pi cron jobs.
+- ✅ SQLite database design with SQLAlchemy ORM for efficient data handling.
+- ✅ RESTful API endpoints to get albums and submit ratings.
+- ✅ Flask backend with JSON responses for easy integration.
 
-Features
+## API Endpoints
 
-Technologies
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | API status check |
+| `/albums` | GET | Returns album list (mock or live via API) |
+| `/rank` | POST | Submit album rating (JSON body: `{"album": "...", "rating": ...}`) |
 
-Setup & Installation
+## Tech Stack
 
-API Endpoints
+- **Python 3**
+- **Flask** for backend API
+- **SQLAlchemy ORM** for database interactions
+- **SQLite** database
+- **Requests** for API calls
+- **Raspberry Pi** for scheduled scraping
+- **REST API design**
 
-Database Schema
+## Installation & Run
 
-Example Workflow
+```bash
+# Clone repo
+git clone https://github.com/RininAbraham1/Album-Score-Ranker.git
+cd Album-Score-Ranker
 
-Future Improvements
+# Install dependencies
+pip install -r requirements.txt
 
-Features
+# Run app
+python app.py
 
-Aggregates 2,000+ album ratings to generate dynamic rankings
-
-Fetches album metadata using Spotify API
-
-Provides RESTful endpoints for album retrieval and rating submission
-
-SQLite database integration via SQLAlchemy ORM for efficient storage
-
-Optional Raspberry Pi cron jobs for automated album scraping
-
-Returns average ratings and ranking for albums
-
-Modular structure: scraper.py for data fetching, database.py for persistent storage, app.py for API
-
-Technologies
-
-Python – Core backend language
-
-Flask – RESTful API development
-
-SQLite + SQLAlchemy – Database storage and ORM
-
-Requests – API communication
-
-Raspberry Pi (optional) – Automated cron jobs for album data scraping
-
-Spotify Web API – Live album metadata
-
-JSON – Data interchange format
-
-Setup & Installation
-
+# Visit in browser
+http://127.0.0.1:5000/albums
