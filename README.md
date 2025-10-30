@@ -2,7 +2,7 @@
 
 A simple Flask API that simulates ranking albums based on user ratings.
 
-**Tech Stack:** Python, Flask, SQLite (mocked)
+**Tech Stack:** Python, Flask, SQLite 
 
 ## Run Locally
 ```bash
