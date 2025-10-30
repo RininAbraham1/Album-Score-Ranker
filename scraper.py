@@ -62,7 +62,8 @@ def fetch_album_data(api_mode=False):
     if api_mode:
         try:
             # Example using Spotify API (requires API key/token)
-            headers = {"Authorization": "Bearer YOUR_SPOTIFY_TOKEN"}
+            headers = {"Authorization": "Bearer BQBFz03X2GVHi2_7AXW86NeTdtLXZjuKw0B930ZM3EZclztArbNOAV52bsZ98abio_Sq-N6AwMo-MLtL-hD7X79Ij4Nc__y6Ngo_5FAFhF1R7SkhkyTB_XeF2cEqmko2TLTqKvALu2w"}
+
             url = "https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M/tracks"  # Top 50 tracks playlist example
             response = requests.get(url, headers=headers)
             response.raise_for_status()
@@ -83,6 +84,6 @@ def fetch_album_data(api_mode=False):
         return sample_albums
 
 if __name__ == "__main__":
-    albums = fetch_album_data()
+    albums = fetch_album_data(api_mode=True)
     for a in albums:
         print(f"{a['title']} - {a['artist']} ({a['score']})")
