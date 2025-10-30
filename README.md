@@ -8,3 +8,10 @@ A simple Flask API that simulates ranking albums based on user ratings.
 ```bash
 pip install -r requirements.txt
 python app.py
+## Example Endpoints
+- GET /albums → View sample album scores
+- POST /rank → Submit a new album rating
+{
+  "album": "Random Access Memories",
+  "rating": 10
+}
