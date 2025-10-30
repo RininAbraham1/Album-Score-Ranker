@@ -1,8 +1,7 @@
 import requests
 
-def fetch_album_data():
-   
-    sample_albums = [
+# Mock data for testing / fallback
+sample_albums = [
     {"title": "To Pimp a Butterfly", "artist": "Kendrick Lamar", "score": 95},
     {"title": "Songs in the Key of Life", "artist": "Stevie Wonder", "score": 94},
     {"title": "good kid, m.A.A.d city", "artist": "Kendrick Lamar", "score": 94},
@@ -53,10 +52,37 @@ def fetch_album_data():
     {"title": "Black on Both Sides", "artist": "Mos Def", "score": 90},
     {"title": "Bitches Brew", "artist": "Miles Davis", "score": 90},
     {"title": "Dummy", "artist": "Portishead", "score": 90}
+]
 
-    ]
-    return sample_albums
+def fetch_album_data(api_mode=False):
+    """
+    Fetch albums from either the mock data or an API (Spotify, MusicBrainz, etc.).
+    Set api_mode=True to fetch from a real API.
+    """
+    if api_mode:
+        try:
+            # Example using Spotify API (requires API key/token)
+            headers = {"Authorization": "Bearer YOUR_SPOTIFY_TOKEN"}
+            url = "https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M/tracks"  # Top 50 tracks playlist example
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            albums = []
+            for item in data['items']:
+                album_info = item['track']['album']
+                albums.append({
+                    "title": album_info['name'],
+                    "artist": ", ".join([artist['name'] for artist in album_info['artists']]),
+                    "score": 90  # default since API won't have user score
+                })
+            return albums
+        except Exception as e:
+            print("API fetch failed, falling back to mock data:", e)
+            return sample_albums
+    else:
+        return sample_albums
 
 if __name__ == "__main__":
     albums = fetch_album_data()
-    print("Fetched albums:", albums)
+    for a in albums:
+        print(f"{a['title']} - {a['artist']} ({a['score']})")
